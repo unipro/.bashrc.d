@@ -1,0 +1,10 @@
+# User specific aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias diff='diff --strip-trailing-cr'
+alias emacs='emacsclient -c -a emacs'
+
+# Local Variables:
+# mode: shell-script
+# End:

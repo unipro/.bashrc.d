@@ -1,0 +1,19 @@
+# ~/.bash.d/init: executed by .bashrc
+
+# Add the next three lines to the end of .bashrc
+# if [ -f ~/.bash.d/init ]; then
+#     . ~/.bash.d/init
+# fi
+
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+
+# Alias definitions.
+if [ -f ~/.bash.d/aliases ]; then
+    . ~/.bash.d/aliases
+fi
+
+# Local Variables:
+# mode: shell-script
+# End:
