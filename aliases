@@ -3,7 +3,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias diff='diff --strip-trailing-cr'
-alias emacsc='emacsclient -c -a emacs'
+alias ec='emacsclient -c -a emacs'
 
 # Local Variables:
 # mode: shell-script
