@@ -9,6 +9,78 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
 export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 
+add_bin_path () {
+    local path="$1"
+    if [ -f "$path" ]; then
+        if [ "$PATH" != "" ]; then
+            export PATH="$path"
+        else
+            export PATH="$path:$PATH"
+        fi
+    fi
+}
+
+add_pkg_config_path () {
+    local path="$1"
+    if [ -d "$path" ]; then
+        if [ "$PKG_CONFIG_PATH" != "" ]; then
+            export PKG_CONFIG_PATH="$path:$PKG_CONFIG_PATH"
+        else
+            export PKG_CONFIG_PATH="$path"
+        fi
+    fi
+}
+
+add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
+
+add_bin_path "/usr/local/opt/icu4c/bin"
+add_bin_path "/usr/local/opt/icu4c/sbin"
+add_pkg_config_path "/usr/local/opt/icu4c/lib/pkgconfig"
+
+add_bin_path "/usr/local/opt/openssl/bin"
+add_pkg_config_path "/usr/local/opt/openssl/lib/pkgconfig"
+
+# openssl@1.1 is keg-only
+# add_bin_path "/usr/local/opt/openssl@1.1/bin"
+# add_pkg_config_path "/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+add_pkg_config_path "/usr/local/opt/libffi/lib/pkgconfig"
+
+add_bin_path "/usr/local/opt/sqlite/bin"
+add_pkg_config_path "/usr/local/opt/sqlite/lib/pkgconfig"
+
+# python alternate version
+# add_bin_path "/usr/local/opt/python@3.8/bin"
+# add_pkg_config_path "/usr/local/opt/python@3.8/lib/pkgconfig"
+
+add_bin_path "/usr/local/opt/qt/bin"
+add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
+
+# guile 3.0
+if [ -d /usr/local/share/guile/site/3.0 ]; then
+    export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+    export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+fi
+
+# rust
+if [ -d $HOME/.cargo/bin ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
+# Enable programmable completion features
+if ! shopt -oq posix; then
+    if [ -f /etc/profile.d/bash_completion.sh ]; then
+        . /etc/profile.d/bash_completion.sh
+    elif [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+        . /usr/local/etc/profile.d/bash_completion.sh
+    elif [ -f ~/.bash_completion ]; then
+        . ~/.bash_completion
+    elif [ -f ~/.bash.d/completion ]; then
+        . ~/.bash.d/completion
+    fi
+fi
+
 # Alias definitions.
 if [ -f ~/.bash.d/aliases ]; then
     . ~/.bash.d/aliases
