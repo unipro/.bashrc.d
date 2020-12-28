@@ -43,44 +43,50 @@ add_pkg_config_path () {
     fi
 }
 
-add_bin_path "$HOME/.emacs.d/bin"
+case "$OSTYPE" in
+    linux-gnu*)
+        ;;
+    darwin*)
+        add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
 
-add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
+        add_bin_path "/usr/local/opt/icu4c/bin"
+        add_bin_path "/usr/local/opt/icu4c/sbin"
+        add_pkg_config_path "/usr/local/opt/icu4c/lib/pkgconfig"
 
-add_bin_path "/usr/local/opt/icu4c/bin"
-add_bin_path "/usr/local/opt/icu4c/sbin"
-add_pkg_config_path "/usr/local/opt/icu4c/lib/pkgconfig"
+        add_bin_path "/usr/local/opt/openssl/bin"
+        add_pkg_config_path "/usr/local/opt/openssl/lib/pkgconfig"
 
-add_bin_path "/usr/local/opt/openssl/bin"
-add_pkg_config_path "/usr/local/opt/openssl/lib/pkgconfig"
+        add_pkg_config_path "/usr/local/opt/libffi/lib/pkgconfig"
 
-# openssl@1.1 is keg-only
-# add_bin_path "/usr/local/opt/openssl@1.1/bin"
-# add_pkg_config_path "/usr/local/opt/openssl@1.1/lib/pkgconfig"
+        add_bin_path "/usr/local/opt/sqlite/bin"
+        add_pkg_config_path "/usr/local/opt/sqlite/lib/pkgconfig"
 
-add_pkg_config_path "/usr/local/opt/libffi/lib/pkgconfig"
+        add_bin_path "/usr/local/opt/qt/bin"
+        add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
 
-add_bin_path "/usr/local/opt/sqlite/bin"
-add_pkg_config_path "/usr/local/opt/sqlite/lib/pkgconfig"
+        # guile 3.0
+        if [ -d /usr/local/share/guile/site/3.0 ]; then
+            export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+            export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+            export GUILE_SYSTEM_EXTENSIONS_PATH="/usr/local/lib/guile/3.0/extensions"
+        fi
 
-# python alternate version
-# add_bin_path "/usr/local/opt/python@3.8/bin"
-# add_pkg_config_path "/usr/local/opt/python@3.8/lib/pkgconfig"
-
-add_bin_path "/usr/local/opt/qt/bin"
-add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
-
-# guile 3.0
-if [ -d /usr/local/share/guile/site/3.0 ]; then
-    export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
-    export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
-fi
+        if [ -f /usr/local/bin/guile ]; then
+            export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
+        fi
+        ;;
+    *)
+        ;;
+esac
 
 # rust
 if [ -d $HOME/.cargo/bin ]; then
     add_bin_path "$HOME/.cargo/bin"
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
+
+# emacs
+add_bin_path "$HOME/.emacs.d/bin"
 
 # Enable programmable completion features
 if ! shopt -oq posix; then
