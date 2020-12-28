@@ -11,8 +11,8 @@ export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 
 add_bin_path () {
     local path="$1"
-    if [ -f "$path" ]; then
-        if [ "$PATH" != "" ]; then
+    if [ -d "$path" ]; then
+        if [ -z "$PATH" ]; then
             export PATH="$path"
         else
             export PATH="$path:$PATH"
@@ -23,10 +23,10 @@ add_bin_path () {
 add_pkg_config_path () {
     local path="$1"
     if [ -d "$path" ]; then
-        if [ "$PKG_CONFIG_PATH" != "" ]; then
-            export PKG_CONFIG_PATH="$path:$PKG_CONFIG_PATH"
-        else
+        if [ -z "$PKG_CONFIG_PATH" ]; then
             export PKG_CONFIG_PATH="$path"
+        else
+            export PKG_CONFIG_PATH="$path:$PKG_CONFIG_PATH"
         fi
     fi
 }
