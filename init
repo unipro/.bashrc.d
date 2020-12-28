@@ -31,6 +31,8 @@ add_pkg_config_path () {
     fi
 }
 
+add_bin_path "$HOME/.emacs.d/bin"
+
 add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
 
 add_bin_path "/usr/local/opt/icu4c/bin"
