@@ -15,7 +15,13 @@ add_bin_path () {
         if [ -z "$PATH" ]; then
             export PATH="$path"
         else
-            export PATH="$path:$PATH"
+            case ":${PATH}:" in
+                *:"$path":*)
+                    ;;
+                *)
+                    export PATH="$path:$PATH"
+                    ;;
+            esac
         fi
     fi
 }
@@ -26,7 +32,13 @@ add_pkg_config_path () {
         if [ -z "$PKG_CONFIG_PATH" ]; then
             export PKG_CONFIG_PATH="$path"
         else
-            export PKG_CONFIG_PATH="$path:$PKG_CONFIG_PATH"
+            case ":${PKG_CONFIG_PATH}:" in
+                *:"$path":*)
+                    ;;
+                *)
+                    export PKG_CONFIG_PATH="$path:$PKG_CONFIG_PATH"
+                    ;;
+            esac
         fi
     fi
 }
@@ -66,7 +78,7 @@ fi
 
 # rust
 if [ -d $HOME/.cargo/bin ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
+    add_bin_path "$HOME/.cargo/bin"
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
