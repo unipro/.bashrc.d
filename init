@@ -88,7 +88,7 @@ fi
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
 
-# Enable programmable completion features
+# enable programmable completion features
 if ! shopt -oq posix; then
     if [ -f /etc/profile.d/bash_completion.sh ]; then
         . /etc/profile.d/bash_completion.sh
@@ -101,9 +101,14 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Alias definitions.
+# alias definitions
 if [ -f ~/.bash.d/aliases ]; then
     . ~/.bash.d/aliases
+fi
+
+# private definitions
+if [ -f ~/.bash.d/private ]; then
+    . ~/.bash.d/private
 fi
 
 # Local Variables:
