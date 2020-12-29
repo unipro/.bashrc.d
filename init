@@ -74,6 +74,14 @@ case "$OSTYPE" in
         if [ -f /usr/local/bin/guile ]; then
             export GUILE_TLS_CERTIFICATE_DIRECTORY=/usr/local/etc/gnutls/
         fi
+
+        # docbook
+        if [ -f "/usr/local/etc/xml/catalog" ]; then
+            export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+        fi
+
+        # if you need to have gnu-getopt
+        # add_pkg_path "/usr/local/opt/gnu-getopt/bin"
         ;;
     *)
         ;;
