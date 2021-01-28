@@ -90,8 +90,12 @@ esac
 # rust
 if [ -d $HOME/.cargo/bin ]; then
     add_bin_path "$HOME/.cargo/bin"
-    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+    # export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+    export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
 fi
+
+# go
+export GOPATH=~/Workspace/go
 
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
