@@ -1,8 +1,8 @@
 # ~/.bash.d/init: executed by .bashrc
 
 # Add the next three lines to the end of .bashrc
-# if [ -f ~/.bash.d/init ]; then
-#     . ~/.bash.d/init
+# if [ -f ~/.bashrc.d/init ]; then
+#     . ~/.bashrc.d/init
 # fi
 
 export ALTERNATE_EDITOR=""
@@ -20,6 +20,23 @@ add_bin_path () {
                     ;;
                 *)
                     export PATH="$path:$PATH"
+                    ;;
+            esac
+        fi
+    fi
+}
+
+add_man_path () {
+    local path="$1"
+    if [ -d "$path" ]; then
+        if [ -z "$MANPATH" ]; then
+            export MANPATH="$path:$(manpath)"
+        else
+            case ":${MANPATH}:" in
+                *:"$path":*)
+                    ;;
+                *)
+                    export MANPATH="$path:$MANPATH"
                     ;;
             esac
         fi
@@ -99,6 +116,15 @@ fi
 
 # go
 export GOPATH=~/Workspace/go
+
+# node
+if [ -d ${HOME}/.npm-packages ]; then
+    export NPM_PACKAGES=${HOME}/.npm-packages
+    export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+    add_bin_path "$NPM_PACKAGES/bin"
+    add_man_path "$NPM_PACKAGES/share/man"
+fi
 
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
