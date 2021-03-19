@@ -1,4 +1,4 @@
-# ~/.bash.d/init: executed by .bashrc
+# ~/.bashrc.d/init: executed by .bashrc
 
 # Add the next three lines to the end of .bashrc
 # if [ -f ~/.bashrc.d/init ]; then
@@ -137,19 +137,19 @@ if ! shopt -oq posix; then
         . /usr/local/etc/profile.d/bash_completion.sh
     elif [ -f ~/.bash_completion ]; then
         . ~/.bash_completion
-    elif [ -f ~/.bash.d/completion ]; then
-        . ~/.bash.d/completion
+    elif [ -f ~/.bashrc.d/completion ]; then
+        . ~/.bashrc.d/completion
     fi
 fi
 
 # alias definitions
-if [ -f ~/.bash.d/aliases ]; then
-    . ~/.bash.d/aliases
+if [ -f ~/.bashrc.d/aliases ]; then
+    . ~/.bashrc.d/aliases
 fi
 
 # private definitions
-if [ -f ~/.bash.d/private ]; then
-    . ~/.bash.d/private
+if [ -f ~/.bashrc.d/private ]; then
+    . ~/.bashrc.d/private
 fi
 
 # Local Variables:
