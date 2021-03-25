@@ -115,7 +115,7 @@ if [ -d $HOME/.cargo/bin ]; then
 fi
 
 # go
-export GOPATH=~/Workspace/go
+export GOPATH=~/workspace/go
 
 # node
 if [ -d ${HOME}/.npm-packages ]; then
