@@ -116,6 +116,7 @@ fi
 
 # go
 export GOPATH=~/workspace/go
+add_bin_path "$GOPATH/bin"
 
 # node
 if [ -d ${HOME}/.npm-packages ]; then
