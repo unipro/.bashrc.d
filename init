@@ -153,6 +153,9 @@ if [ -f ~/.bashrc.d/private ]; then
     . ~/.bashrc.d/private
 fi
 
+# direnv
+eval "$(direnv hook bash)"
+
 # Local Variables:
 # mode: shell-script
 # End:
