@@ -115,7 +115,7 @@ if [ -d $HOME/.cargo/bin ]; then
 fi
 
 # go
-export GOPATH=~/workspace/go
+export GOPATH=~/go
 add_bin_path "$GOPATH/bin"
 
 # node
