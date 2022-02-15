@@ -115,7 +115,7 @@ if [ -d $HOME/.cargo/bin ]; then
 fi
 
 # go
-export GOPATH=~/go
+export GOPATH=${HOME}/go
 add_bin_path "$GOPATH/bin"
 
 # node
@@ -126,6 +126,9 @@ if [ -d ${HOME}/.npm-packages ]; then
     add_bin_path "$NPM_PACKAGES/bin"
     add_man_path "$NPM_PACKAGES/share/man"
 fi
+
+# php
+add_bin_path "${HOME}/.composer/vendor/bin"
 
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
