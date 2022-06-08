@@ -2,13 +2,13 @@
 #+author: Ian
 #+date: <2022-06-08 Wed>
 
-To install, clone this repo to ~~/.bashrc.d~
+To install, clone this repo to ~​~/.bashrc.d~
 
 #+BEGIN_SRC shell-script
 git clone https://github.com/unipro/.bashrc.d.git ~/.bashrc.d
 #+END_SRC
 
-Add the code below to ~~/.bashrc~
+Add the code below to ~​~/.bashrc~
 
 #+begin_src shell-script
 if [ -f ~/.bashrc.d/init ]; then
