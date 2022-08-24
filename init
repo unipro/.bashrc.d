@@ -82,7 +82,7 @@ case "$OSTYPE" in
         add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
 
         # nodejs
-        add_bin_path "/usr/local/opt/node@14/bin"
+        # add_bin_path "/usr/local/opt/node@14/bin"
 
         # guile 3.0
         if [ -d /usr/local/share/guile/site/3.0 ]; then
@@ -123,13 +123,18 @@ export GOPATH=${HOME}/go
 add_bin_path "$GOPATH/bin"
 
 # node
-if [ -d ${HOME}/.npm-packages ]; then
-    export NPM_PACKAGES=${HOME}/.npm-packages
-    export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-
-    add_bin_path "$NPM_PACKAGES/bin"
-    add_man_path "$NPM_PACKAGES/share/man"
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
+# if [ -d ${HOME}/.npm-packages ]; then
+#     export NPM_PACKAGES=${HOME}/.npm-packages
+#     export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+#     add_bin_path "$NPM_PACKAGES/bin"
+#     add_man_path "$NPM_PACKAGES/share/man"
+# fi
 
 # php
 add_bin_path "${HOME}/.composer/vendor/bin"
@@ -168,7 +173,7 @@ if [ -f ~/.bashrc.d/private ]; then
 fi
 
 # direnv
-eval "$(direnv hook bash)"
+command -v direnv &> /dev/null && eval "$(direnv hook bash)"
 
 # Local Variables:
 # mode: shell-script
