@@ -29,6 +29,8 @@ do_find_dot_ls() {
 }
 alias find.ls=do_find_dot_ls
 
+alias stop='kill -STOP'
+
 # Local Variables:
 # mode: shell-script
 # End:
