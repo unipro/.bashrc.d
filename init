@@ -81,6 +81,8 @@ case "$OSTYPE" in
         add_bin_path "/usr/local/opt/qt/bin"
         add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
 
+        add_bin_path "/usr/local/opt/man-db/libexec/bin"
+
         # nodejs
         # add_bin_path "/usr/local/opt/node@14/bin"
 
@@ -110,6 +112,7 @@ case "$OSTYPE" in
     *)
         ;;
 esac
+
 
 # rust
 if [ -d $HOME/.cargo/bin ]; then
