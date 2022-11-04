@@ -64,6 +64,10 @@ case "$OSTYPE" in
     linux-gnu*)
         ;;
     darwin*)
+        add_bin_path "/usr/local/opt/llvm/bin"
+        # export LDFLAGS="-L/usr/local/opt/llvm/lib"
+        # export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
         add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
 
         add_bin_path "/usr/local/opt/icu4c/bin"
