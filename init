@@ -64,26 +64,26 @@ case "$OSTYPE" in
     linux-gnu*)
         ;;
     darwin*)
-        add_bin_path "/usr/local/opt/llvm/bin"
-        # export LDFLAGS="-L/usr/local/opt/llvm/lib"
-        # export CPPFLAGS="-I/usr/local/opt/llvm/include"
+        add_bin_path "$(brew --prefix llvm)/bin"
+        # export LDFLAGS="-L$(brew --prefix llvm)/lib"
+        # export CPPFLAGS="-I$(brew --prefix llvm)/include"
 
-        add_pkg_config_path "/usr/local/opt/readline/lib/pkgconfig"
+        add_pkg_config_path "-I$(brew --prefix readline)/lib/pkgconfig"
 
-        add_bin_path "/usr/local/opt/icu4c/bin"
-        add_bin_path "/usr/local/opt/icu4c/sbin"
-        add_pkg_config_path "/usr/local/opt/icu4c/lib/pkgconfig"
+        add_bin_path "-I$(brew --prefix icu4c)/bin"
+        add_bin_path "$(brew --prefix icu4c)/sbin"
+        add_pkg_config_path "$(brew --prefix icu4c)/lib/pkgconfig"
 
-        add_bin_path "/usr/local/opt/openssl/bin"
-        add_pkg_config_path "/usr/local/opt/openssl/lib/pkgconfig"
+        add_bin_path "$(brew --prefix openssl@1.1)/bin"
+        add_pkg_config_path "$(brew --prefix openssl@1.1)/lib/pkgconfig"
 
-        add_pkg_config_path "/usr/local/opt/libffi/lib/pkgconfig"
+        add_pkg_config_path "$(brew --prefix libffi)/lib/pkgconfig"
 
-        add_bin_path "/usr/local/opt/sqlite/bin"
-        add_pkg_config_path "/usr/local/opt/sqlite/lib/pkgconfig"
+        add_bin_path "$(brew --prefix sqlite)/bin"
+        add_pkg_config_path "$(brew --prefix sqlite)/lib/pkgconfig"
 
-        add_bin_path "/usr/local/opt/qt/bin"
-        add_pkg_config_path "/usr/local/opt/qt/lib/pkgconfig"
+        add_bin_path "$(brew --prefix qt)/bin"
+        add_pkg_config_path "$(brew --prefix qt)/lib/pkgconfig"
 
         add_bin_path "/usr/local/opt/man-db/libexec/bin"
 
