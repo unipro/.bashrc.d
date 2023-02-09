@@ -87,6 +87,9 @@ case "$OSTYPE" in
 
         add_bin_path "$(brew --prefix)/opt/man-db/libexec/bin"
 
+        # python
+        add_bin_path "${HOME}/Library/Python/3.9/bin"
+
         # nodejs
         # add_bin_path "$(brew --prefix)/opt/node@14/bin"
 

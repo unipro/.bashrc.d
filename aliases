@@ -9,6 +9,15 @@ alias ec='emacsclient -c -a emacs'
 
 alias cd..='cd ..'
 
+case "$OSTYPE" in
+    linux-gnu*)
+        ;;
+    darwin*)
+        alias lx='ls -le@'
+        ;;
+esac
+
+
 echoerr() { echo "$@" 1>&2; }
 
 do_ff() {
