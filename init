@@ -77,6 +77,9 @@ case "$OSTYPE" in
         add_bin_path "$(brew --prefix openssl@1.1)/bin"
         add_pkg_config_path "$(brew --prefix openssl@1.1)/lib/pkgconfig"
 
+        add_bin_path "$(brew --prefix curl)/bin"
+        add_pkg_config_path "$(brew --prefix curl)/lib/pkgconfig"
+
         add_pkg_config_path "$(brew --prefix libffi)/lib/pkgconfig"
 
         add_bin_path "$(brew --prefix sqlite)/bin"
