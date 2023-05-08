@@ -64,8 +64,7 @@ case "$OSTYPE" in
     linux-gnu*)
         ;;
     darwin*)
-        add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
-
+        # add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
 
         add_bin_path "$(brew --prefix llvm)/bin"
         # export LDFLAGS="-L$(brew --prefix llvm)/lib"
