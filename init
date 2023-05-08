@@ -64,6 +64,9 @@ case "$OSTYPE" in
     linux-gnu*)
         ;;
     darwin*)
+        add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
+
+
         add_bin_path "$(brew --prefix llvm)/bin"
         # export LDFLAGS="-L$(brew --prefix llvm)/lib"
         # export CPPFLAGS="-I$(brew --prefix llvm)/include"
@@ -74,8 +77,10 @@ case "$OSTYPE" in
         add_bin_path "$(brew --prefix icu4c)/sbin"
         add_pkg_config_path "$(brew --prefix icu4c)/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix openssl@1.1)/bin"
-        add_pkg_config_path "$(brew --prefix openssl@1.1)/lib/pkgconfig"
+        # add_bin_path "$(brew --prefix openssl@1.1)/bin"
+        # add_pkg_config_path "$(brew --prefix openssl@1.1)/lib/pkgconfig"
+        add_bin_path "$(brew --prefix openssl@3)/bin"
+        add_pkg_config_path "$(brew --prefix openssl@3)/lib/pkgconfig"
 
         add_bin_path "$(brew --prefix curl)/bin"
         add_pkg_config_path "$(brew --prefix curl)/lib/pkgconfig"
