@@ -100,6 +100,9 @@ case "$OSTYPE" in
         # nodejs
         # add_bin_path "$(brew --prefix)/opt/node@14/bin"
 
+        # ruby
+        add_bin_path "$(brew --prefix ruby)/bin"
+
         # guile 3.0
         if [ -d "$(brew --prefix)/share/guile/site/3.0" ]; then
             export GUILE_LOAD_PATH="$(brew --prefix)/share/guile/site/3.0"
