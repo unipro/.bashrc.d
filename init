@@ -92,6 +92,9 @@ case "$OSTYPE" in
         add_bin_path "$(brew --prefix qt)/bin"
         add_pkg_config_path "$(brew --prefix qt)/lib/pkgconfig"
 
+        add_bin_path "$(brew --prefix jpeg)/bin"
+        add_pkg_config_path "$(brew --prefix jpeg)/lib/pkgconfig"
+
         add_bin_path "$(brew --prefix)/opt/man-db/libexec/bin"
 
         # python
