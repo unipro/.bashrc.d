@@ -97,6 +97,9 @@ case "$OSTYPE" in
 
         add_bin_path "$(brew --prefix)/opt/man-db/libexec/bin"
 
+        # llvm
+        add_bin_path "$(brew --prefix llvm)/bin"
+
         # python
         add_bin_path "${HOME}/Library/Python/3.9/bin"
 
@@ -128,6 +131,14 @@ case "$OSTYPE" in
 
         # if you need to have gnu-getopt
         # add_pkg_path "$(brew --prefix)/opt/gnu-getopt/bin"
+
+        # ffmpeg@4
+        # add_bin_path "$(brew --prefix ffmpeg@4)/bin"
+        # add_pkg_config_path "$(brew --prefix ffmpeg@4)/lib/pkgconfig"
+
+        # ffmpeg@5
+        # add_bin_path "$(brew --prefix ffmpeg@5)/bin"
+        # add_pkg_config_path "$(brew --prefix ffmpeg@5)/lib/pkgconfig"
         ;;
     *)
         ;;
