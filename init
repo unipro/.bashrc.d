@@ -67,14 +67,12 @@ case "$OSTYPE" in
         # add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
 
         add_bin_path "$(brew --prefix llvm)/bin"
-        # export LDFLAGS="-L$(brew --prefix llvm)/lib"
-        # export CPPFLAGS="-I$(brew --prefix llvm)/include"
 
-        add_pkg_config_path "-I$(brew --prefix readline)/lib/pkgconfig"
+        add_pkg_config_path "$(brew --prefix readline)/lib/pkgconfig"
 
-        add_pkg_config_path "-I$(brew --prefix zlib)/lib/pkgconfig"
+        add_pkg_config_path "$(brew --prefix zlib)/lib/pkgconfig"
 
-        add_bin_path "-I$(brew --prefix icu4c)/bin"
+        add_bin_path "$(brew --prefix icu4c)/bin"
         add_bin_path "$(brew --prefix icu4c)/sbin"
         add_pkg_config_path "$(brew --prefix icu4c)/lib/pkgconfig"
 
