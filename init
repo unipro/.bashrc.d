@@ -72,6 +72,12 @@ case "$OSTYPE" in
 
         add_pkg_config_path "$(brew --prefix zlib)/lib/pkgconfig"
 
+        add_bin_path "$(brew --prefix bzip2)/bin"
+        add_pkg_config_path "$(brew --prefix bzip2)/lib/pkgconfig"
+
+        add_bin_path "$(brew --prefix ncurses)/bin"
+        add_pkg_config_path "$(brew --prefix ncurses)/lib/pkgconfig"
+
         add_bin_path "$(brew --prefix icu4c)/bin"
         add_bin_path "$(brew --prefix icu4c)/sbin"
         add_pkg_config_path "$(brew --prefix icu4c)/lib/pkgconfig"
