@@ -110,7 +110,7 @@ case "$OSTYPE" in
         add_bin_path "${HOME}/Library/Python/3.9/bin"
 
         # nodejs
-        # add_bin_path "$(brew --prefix)/opt/node@14/bin"
+        add_bin_path "$(brew --prefix)/opt/node@18/bin"
 
         # ruby
         add_bin_path "$(brew --prefix ruby)/bin"
