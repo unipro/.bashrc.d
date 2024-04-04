@@ -135,8 +135,16 @@ case "$OSTYPE" in
         JAVA_HOME=$(/usr/libexec/java_home)
         export JAVA_HOME
 
+        # mysql-client
+        add_bin_path "$(brew --prefix mysql-client)/bin"
+        add_pkg_config_path "$(brew --prefix mysql-client)/lib/pkgconfig"
+
         # if you need to have gnu-getopt
         # add_pkg_path "$(brew --prefix)/opt/gnu-getopt/bin"
+
+        # protobuf@21
+        # add_bin_path "$(brew --prefix protobuf@21)/bin"
+        # add_pkg_config_path "$(brew --prefix protobuf@21)/lib/pkgconfig"
 
         # ffmpeg@4
         # add_bin_path "$(brew --prefix ffmpeg@4)/bin"
