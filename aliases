@@ -6,6 +6,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias diff='diff --strip-trailing-cr'
 alias ec='emacsclient -c -a emacs'
+alias et='emacsclient -t -a emacs'
 
 alias cd..='cd ..'
 
