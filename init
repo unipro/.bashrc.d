@@ -162,6 +162,15 @@ case "$OSTYPE" in
         ;;
 esac
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    add_bin_path "$HOME/bin"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    add_bin_path "$HOME/.local/bin"
+fi
 
 # rust
 if [ -d $HOME/.cargo/bin ]; then
