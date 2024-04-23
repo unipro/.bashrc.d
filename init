@@ -30,7 +30,8 @@ add_man_path () {
     local path="$1"
     if [ -d "$path" ]; then
         if [ -z "$MANPATH" ]; then
-            export MANPATH="$path:$(manpath)"
+            MANPATH="$path:$(manpath)"
+            export MANPATH
         else
             case ":${MANPATH}:" in
                 *:"$path":*)
@@ -117,18 +118,21 @@ case "$OSTYPE" in
 
         # guile 3.0
         if [ -d "$(brew --prefix)/share/guile/site/3.0" ]; then
-            export GUILE_LOAD_PATH="$(brew --prefix)/share/guile/site/3.0"
-            export GUILE_LOAD_COMPILED_PATH="$(brew --prefix)/lib/guile/3.0/site-ccache"
-            export GUILE_SYSTEM_EXTENSIONS_PATH="$(brew --prefix)/lib/guile/3.0/extensions"
+            GUILE_LOAD_PATH="$(brew --prefix)/share/guile/site/3.0"
+            GUILE_LOAD_COMPILED_PATH="$(brew --prefix)/lib/guile/3.0/site-ccache"
+            GUILE_SYSTEM_EXTENSIONS_PATH="$(brew --prefix)/lib/guile/3.0/extensions"
+            export GUILE_LOAD_PATH GUILE_LOAD_COMPILED_PATH GUILE_SYSTEM_EXTENSIONS_PATH
         fi
 
         if [ -f "$(brew --prefix)/bin/guile" ]; then
-            export GUILE_TLS_CERTIFICATE_DIRECTORY=$(brew --prefix)/etc/gnutls/
+            GUILE_TLS_CERTIFICATE_DIRECTORY=$(brew --prefix)/etc/gnutls/
+            export GUILE_TLS_CERTIFICATE_DIRECTORY
         fi
 
         # docbook
         if [ -f "$(brew --prefix)/etc/xml/catalog" ]; then
-            export XML_CATALOG_FILES="$(brew --prefix)/etc/xml/catalog"
+            XML_CATALOG_FILES="$(brew --prefix)/etc/xml/catalog"
+            export XML_CATALOG_FILES
         fi
 
         # Java
@@ -203,21 +207,21 @@ if ! shopt -oq posix; then
         . /etc/profile.d/bash_completion.sh
     elif [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
         . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-    elif [ -f ~/.bash_completion ]; then
-        . ~/.bash_completion
-    elif [ -f ~/.bashrc.d/completion ]; then
-        . ~/.bashrc.d/completion
+    elif [ -f ${HOME}/.bash_completion ]; then
+        . ${HOME}/.bash_completion
+    elif [ -f ${HOME}/.bashrc.d/completion ]; then
+        . ${HOME}/.bashrc.d/completion
     fi
 fi
 
 # alias definitions
-if [ -f ~/.bashrc.d/aliases ]; then
-    . ~/.bashrc.d/aliases
+if [ -f ${HOME}/.bashrc.d/aliases ]; then
+    . ${HOME}/.bashrc.d/aliases
 fi
 
 # private definitions
-if [ -f ~/.bashrc.d/private ]; then
-    . ~/.bashrc.d/private
+if [ -f ${HOME}/.bashrc.d/private ]; then
+    . ${HOME}/.bashrc.d/private
 fi
 
 # direnv
