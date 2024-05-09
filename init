@@ -115,6 +115,7 @@ case "$OSTYPE" in
 
         # ruby
         add_bin_path "$(brew --prefix ruby)/bin"
+        add_pkg_config_path "$(brew --prefix ruby)/lib/pkgconfig"
 
         # guile 3.0
         if [ -d "$(brew --prefix)/share/guile/site/3.0" ]; then
