@@ -67,8 +67,6 @@ case "$OSTYPE" in
     darwin*)
         # add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
 
-        add_bin_path "$(brew --prefix llvm)/bin"
-
         add_pkg_config_path "$(brew --prefix readline)/lib/pkgconfig"
 
         add_pkg_config_path "$(brew --prefix zlib)/lib/pkgconfig"
