@@ -61,105 +61,103 @@ add_pkg_config_path () {
     fi
 }
 
-case "$OSTYPE" in
-    linux-gnu*)
-        ;;
-    darwin*)
-        # add_bin_path "$(brew --prefix coreutils)/libexec/gnubin"
+if [ "${OSTYPE:0:6}" == "darwin" ]; then
+    BREW_PREFIX=$(brew --prefix)
 
-        add_pkg_config_path "$(brew --prefix readline)/lib/pkgconfig"
+    # add_bin_path "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
 
-        add_pkg_config_path "$(brew --prefix zlib)/lib/pkgconfig"
+    add_pkg_config_path "$BREW_PREFIX/opt/readline/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix bzip2)/bin"
-        add_pkg_config_path "$(brew --prefix bzip2)/lib/pkgconfig"
+    add_pkg_config_path "$BREW_PREFIX/opt/zlib/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix ncurses)/bin"
-        add_pkg_config_path "$(brew --prefix ncurses)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/bzip2/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/bzip2/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix icu4c)/bin"
-        add_bin_path "$(brew --prefix icu4c)/sbin"
-        add_pkg_config_path "$(brew --prefix icu4c)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/ncurses/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/ncurses/lib/pkgconfig"
 
-        # add_bin_path "$(brew --prefix openssl@1.1)/bin"
-        # add_pkg_config_path "$(brew --prefix openssl@1.1)/lib/pkgconfig"
-        add_bin_path "$(brew --prefix openssl@3)/bin"
-        add_pkg_config_path "$(brew --prefix openssl@3)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/icu4c/bin"
+    add_bin_path "$BREW_PREFIX/opt/icu4c/sbin"
+    add_pkg_config_path "$BREW_PREFIX/opt/icu4c/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix curl)/bin"
-        add_pkg_config_path "$(brew --prefix curl)/lib/pkgconfig"
+    # add_bin_path "$BREW_PREFIX/opt/openssl@1.1/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/openssl@1.1/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/openssl@3/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/openssl@3/lib/pkgconfig"
 
-        add_pkg_config_path "$(brew --prefix libffi)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/curl/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/curl/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix sqlite)/bin"
-        add_pkg_config_path "$(brew --prefix sqlite)/lib/pkgconfig"
+    add_pkg_config_path "$BREW_PREFIX/opt/libffi/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix qt)/bin"
-        add_pkg_config_path "$(brew --prefix qt)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/sqlite/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/sqlite/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix jpeg)/bin"
-        add_pkg_config_path "$(brew --prefix jpeg)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/qt/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/qt/lib/pkgconfig"
 
-        add_bin_path "$(brew --prefix)/opt/man-db/libexec/bin"
+    add_bin_path "$BREW_PREFIX/opt/jpeg/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/jpeg/lib/pkgconfig"
 
-        # llvm
-        add_bin_path "$(brew --prefix llvm)/bin"
+    add_bin_path "$BREW_PREFIX/opt/man-db/libexec/bin"
 
-        # python
-        add_bin_path "${HOME}/Library/Python/3.9/bin"
+    # llvm
+    add_bin_path "$BREW_PREFIX/opt/llvm/bin"
 
-        # nodejs
-        add_bin_path "$(brew --prefix)/opt/node@18/bin"
+    # python
+    add_bin_path "${HOME}/Library/Python/3.9/bin"
 
-        # ruby
-        add_bin_path "$(brew --prefix ruby)/bin"
-        add_pkg_config_path "$(brew --prefix ruby)/lib/pkgconfig"
+    # nodejs
+    add_bin_path "$BREW_PREFIX/opt/node@18/bin"
+    [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && . "$BREW_PREFIX/opt/nvm/nvm.sh"
+    [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && . "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
-        # guile 3.0
-        if [ -d "$(brew --prefix)/share/guile/site/3.0" ]; then
-            GUILE_LOAD_PATH="$(brew --prefix)/share/guile/site/3.0"
-            GUILE_LOAD_COMPILED_PATH="$(brew --prefix)/lib/guile/3.0/site-ccache"
-            GUILE_SYSTEM_EXTENSIONS_PATH="$(brew --prefix)/lib/guile/3.0/extensions"
-            export GUILE_LOAD_PATH GUILE_LOAD_COMPILED_PATH GUILE_SYSTEM_EXTENSIONS_PATH
-        fi
+    # ruby
+    add_bin_path "$BREW_PREFIX/opt/ruby/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/ruby/lib/pkgconfig"
 
-        if [ -f "$(brew --prefix)/bin/guile" ]; then
-            GUILE_TLS_CERTIFICATE_DIRECTORY=$(brew --prefix)/etc/gnutls/
-            export GUILE_TLS_CERTIFICATE_DIRECTORY
-        fi
+    # guile 3.0
+    if [ -d "$BREW_PREFIX/share/guile/site/3.0" ]; then
+        GUILE_LOAD_PATH="$BREW_PREFIX/share/guile/site/3.0"
+        GUILE_LOAD_COMPILED_PATH="$BREW_PREFIX/lib/guile/3.0/site-ccache"
+        GUILE_SYSTEM_EXTENSIONS_PATH="$BREW_PREFIX/lib/guile/3.0/extensions"
+        export GUILE_LOAD_PATH GUILE_LOAD_COMPILED_PATH GUILE_SYSTEM_EXTENSIONS_PATH
+    fi
 
-        # docbook
-        if [ -f "$(brew --prefix)/etc/xml/catalog" ]; then
-            XML_CATALOG_FILES="$(brew --prefix)/etc/xml/catalog"
-            export XML_CATALOG_FILES
-        fi
+    if [ -f "$BREW_PREFIX/bin/guile" ]; then
+        GUILE_TLS_CERTIFICATE_DIRECTORY=$BREW_PREFIX/etc/gnutls/
+        export GUILE_TLS_CERTIFICATE_DIRECTORY
+    fi
 
-        # Java
-        JAVA_HOME=$(/usr/libexec/java_home)
-        export JAVA_HOME
+    # docbook
+    if [ -f "$BREW_PREFIX/etc/xml/catalog" ]; then
+        XML_CATALOG_FILES="$BREW_PREFIX/etc/xml/catalog"
+        export XML_CATALOG_FILES
+    fi
 
-        # mysql-client
-        add_bin_path "$(brew --prefix mysql-client)/bin"
-        add_pkg_config_path "$(brew --prefix mysql-client)/lib/pkgconfig"
+    # Java
+    JAVA_HOME=$(/usr/libexec/java_home)
+    export JAVA_HOME
 
-        # if you need to have gnu-getopt
-        # add_pkg_path "$(brew --prefix)/opt/gnu-getopt/bin"
+    # mysql-client
+    add_bin_path "$BREW_PREFIX/opt/mysql-client/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/mysql-client/lib/pkgconfig"
 
-        # protobuf@21
-        # add_bin_path "$(brew --prefix protobuf@21)/bin"
-        # add_pkg_config_path "$(brew --prefix protobuf@21)/lib/pkgconfig"
+    # if you need to have gnu-getopt
+    # add_pkg_path "$BREW_PREFIX/opt/gnu-getopt/bin"
 
-        # ffmpeg@4
-        # add_bin_path "$(brew --prefix ffmpeg@4)/bin"
-        # add_pkg_config_path "$(brew --prefix ffmpeg@4)/lib/pkgconfig"
+    # protobuf@21
+    # add_bin_path "$BREW_PREFIX/opt/protobuf@21/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/protobuf@21/lib/pkgconfig"
 
-        # ffmpeg@5
-        # add_bin_path "$(brew --prefix ffmpeg@5)/bin"
-        # add_pkg_config_path "$(brew --prefix ffmpeg@5)/lib/pkgconfig"
-        ;;
-    *)
-        ;;
-esac
+    # ffmpeg@4
+    # add_bin_path "$BREW_PREFIX/opt/ffmpeg@4/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/ffmpeg@4/lib/pkgconfig"
+
+    # ffmpeg@5
+    # add_bin_path "$BREW_PREFIX/opt/ffmpeg@5/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/ffmpeg@5/lib/pkgconfig"
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -174,8 +172,9 @@ fi
 # rust
 if [ -d $HOME/.cargo/bin ]; then
     add_bin_path "$HOME/.cargo/bin"
-    # export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-    export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+    if command -v rustc &> /dev/null; then
+        export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+    fi
 fi
 
 # go
@@ -186,8 +185,6 @@ add_bin_path "$GOPATH/bin"
 add_bin_path "$HOME/node_modules/.bin"
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
 fi
 # if [ -d ${HOME}/.npm-packages ]; then
 #     export NPM_PACKAGES=${HOME}/.npm-packages
@@ -214,23 +211,28 @@ add_bin_path "$HOME/.emacs.d/bin"
 if ! shopt -oq posix; then
     if [ -f /etc/profile.d/bash_completion.sh ]; then
         . /etc/profile.d/bash_completion.sh
-    elif [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
-        . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     elif [ -f ${HOME}/.bash_completion ]; then
         . ${HOME}/.bash_completion
     elif [ -f ${HOME}/.bashrc.d/completion ]; then
         . ${HOME}/.bashrc.d/completion
     fi
+
+    if [ "${OSTYPE:0:6}" == "darwin" ]; then
+        if [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+            . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+        fi
+    fi
+
 fi
 
 # alias definitions
 if [ -f ${HOME}/.bashrc.d/aliases ]; then
-    . ${HOME}/.bashrc.d/aliases
+    . "${HOME}/.bashrc.d/aliases"
 fi
 
 # private definitions
 if [ -f ${HOME}/.bashrc.d/private ]; then
-    . ${HOME}/.bashrc.d/private
+    . "$HOME/.bashrc.d/private"
 fi
 
 # direnv
