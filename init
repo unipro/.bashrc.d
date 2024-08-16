@@ -139,9 +139,13 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     JAVA_HOME=$(/usr/libexec/java_home)
     export JAVA_HOME
 
-    # mysql-client
-    add_bin_path "$BREW_PREFIX/opt/mysql-client/bin"
-    add_pkg_config_path "$BREW_PREFIX/opt/mysql-client/lib/pkgconfig"
+    # mysql@8.4
+    add_bin_path "$(brew --prefix mysql@8.4)/bin"
+    add_pkg_config_path "$(brew --prefix mysql@8.4)/lib/pkgconfig"
+
+    # mysql-client@8.4
+    add_bin_path "$(brew --prefix mysql-client@8.4)/bin"
+    add_pkg_config_path "$(brew --prefix mysql-client@8.4)/lib/pkgconfig"
 
     # if you need to have gnu-getopt
     # add_pkg_path "$BREW_PREFIX/opt/gnu-getopt/bin"
