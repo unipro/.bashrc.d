@@ -211,6 +211,7 @@ fi
 
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
+add_bin_path "$HOME/.config/emacs/bin"
 
 # enable programmable completion features
 if ! shopt -oq posix; then
