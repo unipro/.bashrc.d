@@ -209,6 +209,12 @@ if command -v pyenv > /dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# All gst-* GStreamer plugins are now bundled in this formula.
+# For GStreamer to find your own plugins, add their paths to `GST_PLUGIN_PATH`.
+if [ -d "$HOME/.local/lib/gstreamer-1.0" ];then
+    export GST_PLUGIN_PATH="$HOME/.local/lib/gstreamer-1.0"
+fi
+
 # emacs
 add_bin_path "$HOME/.emacs.d/bin"
 add_bin_path "$HOME/.config/emacs/bin"
