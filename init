@@ -62,7 +62,7 @@ add_pkg_config_path () {
 }
 
 if [ "${OSTYPE:0:6}" == "darwin" ]; then
-    BREW_PREFIX=$(brew --prefix)
+    BREW_PREFIX="$(brew --prefix)"
 
     # add_bin_path "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
 
@@ -109,7 +109,9 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
 
     # nodejs
     add_bin_path "$BREW_PREFIX/opt/node@18/bin"
+    # shellcheck source=/dev/null
     [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && . "$BREW_PREFIX/opt/nvm/nvm.sh"
+    # shellcheck source=/dev/null
     [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && . "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
     # ruby
@@ -125,7 +127,7 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     fi
 
     if [ -f "$BREW_PREFIX/bin/guile" ]; then
-        GUILE_TLS_CERTIFICATE_DIRECTORY=$BREW_PREFIX/etc/gnutls/
+        GUILE_TLS_CERTIFICATE_DIRECTORY="$BREW_PREFIX/etc/gnutls/"
         export GUILE_TLS_CERTIFICATE_DIRECTORY
     fi
 
@@ -136,16 +138,16 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     fi
 
     # Java
-    JAVA_HOME=$(/usr/libexec/java_home)
+    JAVA_HOME="$(/usr/libexec/java_home)"
     export JAVA_HOME
 
     # mysql@8.4
-    add_bin_path "$(brew --prefix mysql@8.4)/bin"
-    add_pkg_config_path "$(brew --prefix mysql@8.4)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/mysql@8.4/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/mysql@8.4/lib/pkgconfig"
 
     # mysql-client@8.4
-    add_bin_path "$(brew --prefix mysql-client@8.4)/bin"
-    add_pkg_config_path "$(brew --prefix mysql-client@8.4)/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/mysql-client@8.4/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/mysql-client@8.4/lib/pkgconfig"
 
     # if you need to have gnu-getopt
     # add_pkg_path "$BREW_PREFIX/opt/gnu-getopt/bin"
@@ -174,7 +176,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # rust
-if [ -d $HOME/.cargo/bin ]; then
+if [ -d "$HOME/.cargo/bin" ]; then
     add_bin_path "$HOME/.cargo/bin"
     if command -v rustc &> /dev/null; then
         RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
@@ -183,7 +185,7 @@ if [ -d $HOME/.cargo/bin ]; then
 fi
 
 # go
-export GOPATH=${HOME}/go
+export GOPATH="${HOME}/go"
 add_bin_path "$GOPATH/bin"
 
 # node
@@ -191,8 +193,8 @@ add_bin_path "$HOME/node_modules/.bin"
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
 fi
-# if [ -d ${HOME}/.npm-packages ]; then
-#     export NPM_PACKAGES=${HOME}/.npm-packages
+# if [ -d "${HOME}/.npm-packages" ]; then
+#     export NPM_PACKAGES="${HOME}/.npm-packages"
 #     export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 #     add_bin_path "$NPM_PACKAGES/bin"
@@ -209,28 +211,32 @@ if command -v pyenv > /dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# emacs
+add_bin_path "$HOME/.emacs.d/bin"
+add_bin_path "$HOME/.config/emacs/bin"
+
 # All gst-* GStreamer plugins are now bundled in this formula.
 # For GStreamer to find your own plugins, add their paths to `GST_PLUGIN_PATH`.
 if [ -d "$HOME/.local/lib/gstreamer-1.0" ];then
     export GST_PLUGIN_PATH="$HOME/.local/lib/gstreamer-1.0"
 fi
 
-# emacs
-add_bin_path "$HOME/.emacs.d/bin"
-add_bin_path "$HOME/.config/emacs/bin"
-
 # enable programmable completion features
 if ! shopt -oq posix; then
     if [ -f /etc/profile.d/bash_completion.sh ]; then
+        # shellcheck source=/dev/null
         . /etc/profile.d/bash_completion.sh
-    elif [ -f ${HOME}/.bash_completion ]; then
-        . ${HOME}/.bash_completion
-    elif [ -f ${HOME}/.bashrc.d/completion ]; then
-        . ${HOME}/.bashrc.d/completion
+    elif [ -f "${HOME}/.bash_completion" ]; then
+        # shellcheck source=/dev/null
+        . "${HOME}/.bash_completion"
+    elif [ -f "${HOME}/.bashrc.d/completion" ]; then
+        # shellcheck source=/dev/null
+        . "${HOME}/.bashrc.d/completion"
     fi
 
     if [ "${OSTYPE:0:6}" == "darwin" ]; then
         if [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+            # shellcheck source=/dev/null
             . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
         fi
     fi
@@ -238,12 +244,14 @@ if ! shopt -oq posix; then
 fi
 
 # alias definitions
-if [ -f ${HOME}/.bashrc.d/aliases ]; then
-    . "${HOME}/.bashrc.d/aliases"
+if [ -f "$HOME/.bashrc.d/aliases" ]; then
+    # shellcheck source=/dev/null
+    . "$HOME/.bashrc.d/aliases"
 fi
 
 # private definitions
-if [ -f ${HOME}/.bashrc.d/private ]; then
+if [ -f "$HOME/.bashrc.d/private" ]; then
+    # shellcheck source=/dev/null
     . "$HOME/.bashrc.d/private"
 fi
 
