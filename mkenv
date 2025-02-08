@@ -221,7 +221,7 @@ fi
     echo "export GOPATH=$GOPATH"
     echo "export NVM_DIR=$NVM_DIR"
     echo "export GST_PLUGIN_PATH=$GST_PLUGIN_PATH"
-} > "$HOME/.env"
+} > "$HOME/.bash_env"
 
 # Local Variables:
 # mode: shell-script

@@ -5,9 +5,9 @@
 #     . ~/.bashrc.d/init
 # fi
 
-if [ -f "$HOME/.env" ]; then
+if [ -f "$HOME/.bash_env" ]; then
     # shellcheck source=/dev/null
-    . "$HOME/.env"
+    . "$HOME/.bash_env"
 fi
 
 export ALTERNATE_EDITOR=""
