@@ -208,6 +208,11 @@ if [ -d "$HOME/.local/lib/gstreamer-1.0" ];then
     export GST_PLUGIN_PATH="$HOME/.local/lib/gstreamer-1.0"
 fi
 
+# pyenv
+if command -v pyenv &> /dev/null; then
+    eval "$(pyenv init --path)"
+fi
+
 {
     echo "export PATH=$PATH"
     echo "export PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
@@ -221,7 +226,17 @@ fi
     echo "export GOPATH=$GOPATH"
     echo "export NVM_DIR=$NVM_DIR"
     echo "export GST_PLUGIN_PATH=$GST_PLUGIN_PATH"
-} > "$HOME/.bash_env"
+} > "$HOME/.bashrc.d/env"
+
+# pyenv
+if command -v pyenv &> /dev/null; then
+    pyenv virtualenv-init - >> "$HOME/.bashrc.d/env"
+fi
+
+# direnv
+if command -v direnv &> /dev/null; then
+    direnv hook bash >> "$HOME/.bashrc.d/env"
+fi
 
 # Local Variables:
 # mode: shell-script
