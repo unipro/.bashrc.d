@@ -184,13 +184,13 @@ add_bin_path "$HOME/node_modules/.bin"
 if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
 fi
-# if [ -d "${HOME}/.npm-packages" ]; then
-#     export NPM_PACKAGES="${HOME}/.npm-packages"
-#     export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+if [ -d "${HOME}/.npm-packages" ]; then
+    export NPM_PACKAGES="${HOME}/.npm-packages"
+    export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
-#     add_bin_path "$NPM_PACKAGES/bin"
-#     add_man_path "$NPM_PACKAGES/share/man"
-# fi
+    add_bin_path "$NPM_PACKAGES/bin"
+    add_man_path "$NPM_PACKAGES/share/man"
+fi
 
 # php
 add_bin_path "${HOME}/.composer/vendor/bin"
