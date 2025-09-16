@@ -202,6 +202,12 @@ add_bin_path "${HOME}/.pyenv/bin"
 add_bin_path "$HOME/.emacs.d/bin"
 add_bin_path "$HOME/.config/emacs/bin"
 
+# GStreamer (installed from gstreamer.freedesktop.org)
+if [ -d "/Library/Frameworks/GStreamer.framework/Versions/1.0" ]; then
+    add_bin_path "/Library/Frameworks/GStreamer.framework/Versions/1.0/bin"
+    add_pkg_config_path "/Library/Frameworks/GStreamer.framework/Versions/1.0/lib/pkgconfig"
+fi
+
 # All gst-* GStreamer plugins are now bundled in this formula.
 # For GStreamer to find your own plugins, add their paths to `GST_PLUGIN_PATH`.
 if [ -d "$HOME/.local/lib/gstreamer-1.0" ];then
