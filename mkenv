@@ -99,7 +99,7 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     add_bin_path "${HOME}/Library/Python/3.9/bin"
 
     # nodejs
-    add_bin_path "$BREW_PREFIX/opt/node@18/bin"
+    add_bin_path "$BREW_PREFIX/opt/node@20/bin"
     # shellcheck source=/dev/null
     [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && . "$BREW_PREFIX/opt/nvm/nvm.sh"
     # shellcheck source=/dev/null
