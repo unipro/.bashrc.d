@@ -223,15 +223,18 @@ fi
     echo "export PATH=\"$PATH\""
     echo "export PKG_CONFIG_PATH=\"$PKG_CONFIG_PATH\""
     echo "export RUST_SRC_PATH=\"$RUST_SRC_PATH\""
-    echo "export JAVA_HOME=\"$JAVA_HOME\""
-    echo "export XML_CATALOG_FILES=\"$XML_CATALOG_FILES\""
-    echo "export GUILE_LOAD_PATH=\"$GUILE_LOAD_PATH\""
-    echo "export GUILE_SYSTEM_EXTENSIONS_PATH=\"$GUILE_SYSTEM_EXTENSIONS_PATH\""
-    echo "export GUILE_LOAD_COMPILED_PATH=\"$GUILE_LOAD_COMPILED_PATH\""
-    echo "export GUILE_TLS_CERTIFICATE_DIRECTORY=\"$GUILE_TLS_CERTIFICATE_DIRECTORY\""
     echo "export GOPATH=\"$GOPATH\""
     echo "export NVM_DIR=\"$NVM_DIR\""
     echo "export GST_PLUGIN_PATH=\"$GST_PLUGIN_PATH\""
+
+    if [ "${OSTYPE:0:6}" == "darwin" ]; then
+	echo "export JAVA_HOME=\"$JAVA_HOME\""
+	echo "export XML_CATALOG_FILES=\"$XML_CATALOG_FILES\""
+	echo "export GUILE_LOAD_PATH=\"$GUILE_LOAD_PATH\""
+	echo "export GUILE_SYSTEM_EXTENSIONS_PATH=\"$GUILE_SYSTEM_EXTENSIONS_PATH\""
+	echo "export GUILE_LOAD_COMPILED_PATH=\"$GUILE_LOAD_COMPILED_PATH\""
+	echo "export GUILE_TLS_CERTIFICATE_DIRECTORY=\"$GUILE_TLS_CERTIFICATE_DIRECTORY\""
+    fi
 } > "$HOME/.bashrc.d/env"
 
 # pyenv
