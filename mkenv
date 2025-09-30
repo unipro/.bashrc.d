@@ -53,6 +53,7 @@ add_pkg_config_path () {
 
 if [ "${OSTYPE:0:6}" == "darwin" ]; then
     BREW_PREFIX="$(brew --prefix)"
+    add_pkg_config_path "$BREW_PREFIX/lib/pkgconfig"
 
     # add_bin_path "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
 
