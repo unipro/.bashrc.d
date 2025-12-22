@@ -73,8 +73,8 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
 
     # add_bin_path "$BREW_PREFIX/opt/openssl@1.1/bin"
     # add_pkg_config_path "$BREW_PREFIX/opt/openssl@1.1/lib/pkgconfig"
-    add_bin_path "$BREW_PREFIX/opt/openssl@3/bin"
-    add_pkg_config_path "$BREW_PREFIX/opt/openssl@3/lib/pkgconfig"
+    add_bin_path "$BREW_PREFIX/opt/openssl/bin"
+    add_pkg_config_path "$BREW_PREFIX/opt/openssl/lib/pkgconfig"
 
     add_bin_path "$BREW_PREFIX/opt/curl/bin"
     add_pkg_config_path "$BREW_PREFIX/opt/curl/lib/pkgconfig"
@@ -95,11 +95,11 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     # llvm
     add_bin_path "$BREW_PREFIX/opt/llvm/bin"
 
-    # python 3.12
-    add_bin_path "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+    # python
+    add_bin_path "/Library/Frameworks/Python.framework/Versions/Current/bin"
 
     # nodejs
-    add_bin_path "$BREW_PREFIX/opt/node@22/bin"
+    add_bin_path "$BREW_PREFIX/opt/node/bin"
 
     # ruby
     add_bin_path "$BREW_PREFIX/opt/ruby/bin"
