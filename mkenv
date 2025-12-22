@@ -99,7 +99,7 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     add_bin_path "/Library/Frameworks/Python.framework/Versions/Current/bin"
 
     # nodejs
-    add_bin_path "$BREW_PREFIX/opt/node/bin"
+    add_bin_path "$BREW_PREFIX/opt/node@22/bin"
 
     # ruby
     add_bin_path "$BREW_PREFIX/opt/ruby/bin"
