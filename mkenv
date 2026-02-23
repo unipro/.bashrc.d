@@ -52,9 +52,24 @@ add_pkg_config_path () {
 }
 
 if [ "${OSTYPE:0:6}" == "darwin" ]; then
+    ######################################################################
+    # MacPorts
+    ######################################################################
+
+    # GNU coreutils in MacPorts
+    # add_bin_path "/opt/local/libexec/gnubin"
+
+    add_bin_path "/opt/local/bin"
+    add_pkg_config_path "/opt/local/lib/pkgconfig"
+
+    ######################################################################
+    # Homebrew
+    ######################################################################
+
     BREW_PREFIX="$(brew --prefix)"
     add_pkg_config_path "$BREW_PREFIX/lib/pkgconfig"
 
+    # GNU coreutils in homebrew
     # add_bin_path "$BREW_PREFIX/opt/coreutils/libexec/gnubin"
 
     add_pkg_config_path "$BREW_PREFIX/opt/readline/lib/pkgconfig"
