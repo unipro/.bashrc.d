@@ -242,10 +242,10 @@ fi
 {
     echo "export PATH=\"$MY_PATH:\$PATH\""
     if [ -n "$MY_PKG_CONFIG_PATH" ]; then
-        echo "export PKG_CONFIG_PATH=\"$MY_PKG_CONFIG_PATH\""
+        echo "export PKG_CONFIG_PATH=\"$MY_PKG_CONFIG_PATH:\${PKG_CONFIG_PATH}\""
     fi
     if [ -n "$MY_MANPATH" ]; then
-        echo "export MANPATH=\"$MY_MANPATH\""
+        echo "export MANPATH=\"$MY_MANPATH:\${MANPATH}\""
     fi
     if [ -n "$MY_RUST_SRC_PATH" ]; then
         echo "export RUST_SRC_PATH=\"$MY_RUST_SRC_PATH\""
