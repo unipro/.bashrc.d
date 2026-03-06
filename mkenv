@@ -161,6 +161,14 @@ if [ "${OSTYPE:0:6}" == "darwin" ]; then
     # ffmpeg@5
     # add_bin_path "$BREW_PREFIX/opt/ffmpeg@5/bin"
     # add_pkg_config_path "$BREW_PREFIX/opt/ffmpeg@5/lib/pkgconfig"
+
+    # ffmpeg@6
+    # add_bin_path "$BREW_PREFIX/opt/ffmpeg@6/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/ffmpeg@6/lib/pkgconfig"
+
+    # ffmpeg@7
+    # add_bin_path "$BREW_PREFIX/opt/ffmpeg@7/bin"
+    # add_pkg_config_path "$BREW_PREFIX/opt/ffmpeg@7/lib/pkgconfig"
 fi
 
 # set PATH so it includes user's private bin if it exists
