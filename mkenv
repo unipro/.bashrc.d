@@ -3,17 +3,13 @@
 add_bin_path () {
     local path="$1"
     if [ -d "$path" ]; then
-        if [ -z "$MY_PATH" ]; then
-            MY_PATH="$path"
-        else
-            case ":${MY_PATH}:" in
-                *:"$path":*)
-                    ;;
-                *)
-                    MY_PATH="$path:$MY_PATH"
-                    ;;
-            esac
-        fi
+        case ":${MY_PATH}:" in
+            *:"$path":*)
+            ;;
+            *)
+                MY_PATH="$path:${MY_PATH:+$MY_PATH}"
+                ;;
+        esac
     fi
 }
 
@@ -28,7 +24,7 @@ add_man_path () {
         esac
         if [ "${OSTYPE:0:6}" == "darwin" ]; then
             # macOS: accumulate in MY_MANPATH for env export
-            MY_MANPATH="${MY_MANPATH:+$MY_MANPATH:}$path"
+            MY_MANPATH="${MY_MANPATH:+$MY_MANPATH:}:$path"
         else
             # Linux: use ~/.manpath with MANDATORY_MANPATH
             if [ -f "$HOME/.manpath" ] && grep -q "^MANDATORY_MANPATH $path$" "$HOME/.manpath"; then
@@ -42,17 +38,13 @@ add_man_path () {
 add_pkg_config_path () {
     local path="$1"
     if [ -d "$path" ]; then
-        if [ -z "$MY_PKG_CONFIG_PATH" ]; then
-            MY_PKG_CONFIG_PATH="$path"
-        else
-            case ":${MY_PKG_CONFIG_PATH}:" in
-                *:"$path":*)
-                    ;;
-                *)
-                    MY_PKG_CONFIG_PATH="$path:$MY_PKG_CONFIG_PATH"
-                    ;;
-            esac
-        fi
+        case ":${MY_PKG_CONFIG_PATH}:" in
+            *:"$path":*)
+            ;;
+            *)
+                MY_PKG_CONFIG_PATH="$path:${MY_PKG_CONFIG_PATH:+$MY_PKG_CONFIG_PATH}"
+                ;;
+        esac
     fi
 }
 
@@ -253,9 +245,9 @@ if command -v pyenv &> /dev/null; then
 fi
 
 {
-    echo "export PATH=\"$MY_PATH:\$PATH\""
+    echo "export PATH=\"$MY_PATH\$PATH\""
     if [ -n "$MY_PKG_CONFIG_PATH" ]; then
-        echo "export PKG_CONFIG_PATH=\"$MY_PKG_CONFIG_PATH:\${PKG_CONFIG_PATH}\""
+        echo "export PKG_CONFIG_PATH=\"$MY_PKG_CONFIG_PATH\${PKG_CONFIG_PATH}\""
     fi
     if [ -n "$MY_MANPATH" ]; then
         echo "export MANPATH=\"$MY_MANPATH:\${MANPATH}\""
