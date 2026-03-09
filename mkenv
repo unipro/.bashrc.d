@@ -20,16 +20,21 @@ add_bin_path () {
 add_man_path () {
     local path="$1"
     if [ -d "$path" ]; then
-        if [ -z "$MY_MANPATH" ]; then
-            MY_MANPATH="$path:$(manpath)"
+        # Check if already in system manpath
+        case ":$(manpath 2>/dev/null):" in
+            *:"$path":*)
+                return
+                ;;
+        esac
+        if [ "${OSTYPE:0:6}" == "darwin" ]; then
+            # macOS: accumulate in MY_MANPATH for env export
+            MY_MANPATH="${MY_MANPATH:+$MY_MANPATH:}$path"
         else
-            case ":${MY_MANPATH}:" in
-                *:"$path":*)
-                    ;;
-                *)
-                    MY_MANPATH="$path:$MY_MANPATH"
-                    ;;
-            esac
+            # Linux: use ~/.manpath with MANDATORY_MANPATH
+            if [ -f "$HOME/.manpath" ] && grep -q "^MANDATORY_MANPATH $path$" "$HOME/.manpath"; then
+                return
+            fi
+            echo "MANDATORY_MANPATH $path" >> "$HOME/.manpath"
         fi
     fi
 }
